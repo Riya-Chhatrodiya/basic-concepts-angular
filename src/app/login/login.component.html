@@ -1,0 +1,11 @@
+<form>
+    <div class="form-group">
+        <input appHover="green" class="form-control" type="email" name="name" placeholder="Provide your username" [(ngModel)]="email" required />
+    </div>
+    <div class="form-group">
+        <input appHover="steelblue" class="form-control" type="password" name="name" placeholder="Enter your password" [(ngModel)]="password" required />
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary" (click)="Login()" >Login</button>
+    </div>
+</form>

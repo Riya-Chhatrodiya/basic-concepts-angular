@@ -1,0 +1,55 @@
+<!-- <h1>Welcome to {{name}}</h1> -->
+
+<app-header></app-header>
+<app-header></app-header>
+<app-header></app-header>
+<app-header></app-header>
+
+<!-- {{rooms$ | async | json }}  -->
+<!-- async pipe will unwrap the object or unsubscribe to the data and it will give data back -->
+
+<!-- <div [hidden]="hideRooms">
+    Number of Rooms:
+    <div [ngStyle]="{'color': rooms.availableRooms ? 'green' : 'red' }"
+        [innerText]="numberOfRooms"
+    >
+    </div>
+</div> -->
+
+
+<!-- {{rooms.availableRooms ?? "No rooms"}} -->
+
+<div *ngIf="selectedRoom"> 
+    {{selectedRoom | json}}
+</div>
+
+<div>
+    <button (click)="addRoom()" >Add Room</button>
+</div>
+
+
+ <!-- rooms.availableRooms > 0 -->
+<!-- <div *ngIf="hideRooms">     
+    <app-rooms-list [rooms]="roomList" (selectedRoom)="selectRoom($event)" [title]="title" ></app-rooms-list>
+</div> -->
+
+<h1>
+    <!-- {{getError$ | async}}  -->
+    Number of Rooms: {{roomsCount$ | async }}
+</h1>
+
+<div *ngIf="rooms$ | async as rooms">      
+    <app-rooms-list [rooms]="rooms" (selectedRoom)="selectRoom($event)" [title]="title" ></app-rooms-list>
+</div>
+
+<button (click)="toggle()">Toggle</button>
+
+<button (click)="editRoom()">Edit Room</button>
+
+<button (click)="deleteRoom()">Delete Room</button>
+
+<h1>
+    {{totalBytes}} loaded
+</h1>
+
+
