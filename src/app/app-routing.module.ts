@@ -10,7 +10,9 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   { path: 'employee', component: EmployeeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'rooms' , loadChildren: () => import('./rooms/rooms.module').then( m => m.RoomsModule ) },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'booking', loadChildren: () => import('./booking/booking.module').then(m => m.BookingModule) },
   { path: '**', component: NotfoundComponent }
 ];
 
