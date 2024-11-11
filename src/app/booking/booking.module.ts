@@ -11,6 +11,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [BookingComponent],
@@ -24,7 +25,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatNativeDateModule,
     MatButtonModule,
     MatExpansionModule,
-    MatIconModule
+    MatIconModule,
+    MatCheckboxModule
   ]
 })
 export class BookingModule { }

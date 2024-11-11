@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '../services/config.service';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-booking',
@@ -19,29 +19,51 @@ export class BookingComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookingForm = this.fb.group({
-      roomId: new FormControl({value:'2', disabled:true}),
-      guestEmail: [''],
+      roomId: new FormControl({value:'2', disabled:true},{ validators: [Validators.required]}),
+      guestEmail: ['', [Validators.required, Validators.email]],
       checkinDate: [''],
       checkoutDate: [''],
       bookingStatus: [''],
       bookingAmount: [''],
       bookingDate: [''],
       mobileNumber: [''],
-      guestName: [''],
+      guestName: ['',[Validators.required, Validators.minLength(5)]],
       address: this.fb.group({
-        addressLine1: [''],
+        addressLine1: ['',[Validators.required]],
         addressLine2: [''],
-        city: [''],
-        state: [''],
+        city: ['',[Validators.required]],
+        state: ['',[Validators.required]],
         country: [''],
         zipCode: [''],
       }),
-      guests: this.fb.array([this.addGuestControl()])
+      guests: this.fb.array([this.addGuestControl()]),
+      tnc: new FormControl(false, {validators: [Validators.requiredTrue]})
     })
   }
 
   addBooking() {
-    console.log(this.bookingForm.getRawValue())
+    console.log(this.bookingForm.getRawValue());
+    this.bookingForm.reset({
+      roomId: '2',
+      guestEmail: '',
+      checkinDate: '',
+      checkoutDate: '',
+      bookingStatus: '',
+      bookingAmount: '',
+      bookingDate: '',
+      mobileNumber: '',
+      guestName: '',
+      address:{
+        addressLine1: '',
+        addressLine2: '',
+        city: '',
+        state: '',
+        country: '',
+        zipCode: '',
+      },
+      guests : [],
+      tnc: false
+    })
   }
 
   addGuest() {
@@ -51,7 +73,7 @@ export class BookingComponent implements OnInit {
   }
 
   addGuestControl() {
-    return this.fb.group({ guestName: [''], age: new FormControl(''), });
+    return this.fb.group({ guestName: ['',[Validators.required]], age: new FormControl(''), });
   }
 
   removeGuest(i:number) {
