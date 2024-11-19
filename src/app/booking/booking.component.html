@@ -1,8 +1,8 @@
-<p>booking works!</p>
+<!-- <p>booking works!</p>
 
 {{bookingForm.value | json}}
 {{bookingForm.pristine | json}}
-{{bookingForm.dirty | json}}
+{{bookingForm.dirty | json}} -->
 
 <div>
   <button mat-raised-button color="primary" type="button" (click)="addPassport()" >Add Passport</button>
@@ -27,6 +27,7 @@
     </mat-form-field>
     <mat-form-field class="example-full-width">
       <input type="text" matInput formControlName="guestName" placeholder="Guest Name" />
+      <!-- {{bookingForm.get('guestName')?.errors | json}} -->
       <mat-error *ngIf="bookingForm.get('guestName')?.hasError('minlength')">
         Guest Name should have minimum 5 characters!
       </mat-error>
